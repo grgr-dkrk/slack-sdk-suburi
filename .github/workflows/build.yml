@@ -13,9 +13,6 @@ jobs:
         with:
           persist-credentials: false
 
-      - env:
-        SLACK_TOKEN: xoxo-dummy-1234
-
       - name: Install Modules
         run: yarn install
 
@@ -26,4 +23,6 @@ jobs:
         run: yarn lint
 
       - name: Test
+        env:
+          SLACK_TOKEN: xoxo-dummy-1234
         run: yarn test
