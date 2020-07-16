@@ -1,0 +1,26 @@
+name: slack-sdk-suburi-ci
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Install Modules
+        run: yarn install
+
+      - name: TypeCheck
+        run: yarn type-check
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Test
+        run: yarn test
