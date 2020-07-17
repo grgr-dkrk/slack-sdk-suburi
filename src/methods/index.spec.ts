@@ -34,7 +34,7 @@ describe('invoke', () => {
       fn: spyBar,
     },
   ]
-  beforeEach(() => {
+  afterEach(() => {
     spyFoo.mockReset()
     spyBar.mockReset()
   })
