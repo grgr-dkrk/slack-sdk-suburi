@@ -1,11 +1,17 @@
-import { getSlackToken } from '../utils/getSlackToken'
+import { App } from '@slack/bolt'
+import { getBotToken, getSigningSecret } from '../utils/getSlackToken'
 import { WebClient } from '@slack/web-api'
-import { ChatPostMessage } from './chat/postMessage'
+import { ChatPostMessage, BoltChatPostMessage } from './chat/postMessage'
 import { CONVERSATIONS } from '../constants/conversations'
 import { GetUserList } from './users/getUserList'
 
-const token = getSlackToken()
+const token = getBotToken()
+const signingSecret = getSigningSecret()
 const web = new WebClient(token)
+const app = new App({
+  signingSecret,
+  token,
+})
 
 export type Method = { label: string; fn: () => Promise<void> }
 
@@ -13,7 +19,13 @@ export const methods: Method[] = [
   {
     label: 'ChatPostMessage',
     fn: async (): Promise<void> => {
-      ChatPostMessage(web, 'hi', CONVERSATIONS.GENERAL)
+      ChatPostMessage(web, 'hi(node)', CONVERSATIONS.GENERAL)
+    },
+  },
+  {
+    label: 'BoltChatPostMessage',
+    fn: async (): Promise<void> => {
+      BoltChatPostMessage(app, 'hi(bolt)', CONVERSATIONS.GENERAL, token)
     },
   },
   {
