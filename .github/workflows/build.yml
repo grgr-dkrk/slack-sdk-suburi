@@ -27,7 +27,7 @@ jobs:
 
       - name: Test
         env:
-          SLACK_BOT_TOKEN: xoxo-dummy-1234
+          SLACK_BOT_TOKEN: xoxb-dummy-1234
           SLACK_USER_TOKEN: xoxp-dummy-1234
           SLACK_SIGNING_SECRET: x1234567890123123123123
         run: yarn test
