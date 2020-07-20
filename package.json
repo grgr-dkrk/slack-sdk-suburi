@@ -9,6 +9,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "compile:lambda": "rm -rf ./dist && tsc -p ./tsconfig.lambda.json && cp -f ./package.json ./yarn.lock ./dist && cd dist && sh ../scripts/deployToLambda.sh && cd ../",
     "type-check": "tsc --noEmit",
     "lint": "eslint ./src",
     "lint:secret": "secretlint **/*",
